@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>5. Attribute and Class Bundings</title>
+	<script type="text/javascript" src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+	<style type="text/css">
+		.color-red {color: red;}
+		.color-blue {color: blue;}
+		.is-loading { background: grey }
+	</style>
+</head>
+<body>
+	<div id="root">
+		<h1 :class='class_name'>Header!</h1>
+
+		<button :title="title">Hover Over Me</button>
+
+		<button @click='loadFromButton' :class="{'is-loading': is_loading}"> Toggle On Click</button>
+
+		<button @click="disableButton" :disabled="is_disabled">Disable On Click</button>
+	</div>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#root',
+			data: {
+				title: 'Now the title is being set thought JS.',
+				class_name: 'color-red',
+				is_loading: false,
+				is_disabled: false
+			},
+			methods : {
+				loadFromButton() {
+					this.is_loading = true;
+				},
+				disableButton() {
+					this.is_disabled = true;
+				}
+			},
+			mounted() {
+
+			}
+		})
+	</script>
+</body>
+</html>
