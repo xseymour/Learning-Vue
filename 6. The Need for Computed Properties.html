@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>6. The Need for Computed Properties</title>
+	<script type="text/javascript" src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+	<div id="root">
+		<!-- Can use v-text or {{}} syntax for computed text -->
+		<h1 v-text="new Date()"></h1>
+		<!-- Not Clear on what this is, should be in computed section -->
+		<!-- <h1>{{message.split('').reverse().join('')}}</h1> -->
+		<h1 v-text="reverseMessage"></h1>
+
+		<h1>All Tasks</h1>
+		<ul>
+			<li v-for="task in tasks">
+				<input type="checkbox" :checked="task.completed" @click="checkboxClicked" data-task_id="task.id">
+				{{task.description}}
+			</li>
+		</ul>
+
+		<!-- Use Computed Methods to make use of Caching -->
+		<h2>Completed Tasks</h2>
+		<ul>
+			<li v-for="task in completeTasks">{{task.description}}</li>
+		</ul>
+
+		<h2>Incomplete Tasks</h2>
+		<ul>
+			<li v-for="task in incompleteTasks" v-text='task.description'></li>
+		</ul>
+
+		<!-- Without Caching via Computed Methods -->
+
+		<!-- <h2>Completed Tasks</h2>
+		<ul>
+			<li v-for="task in tasks" v-if="task.completed">{{task.description}}</li>
+		</ul>
+		<h2>Incomplete Tasks</h2>
+		<ul>
+			<li v-for="task in tasks" v-if='task.completed == false' v-text='task.description'></li>
+		</ul> -->
+
+	</div>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#root',
+			data: {
+				auto_id: 0,
+				message: 'Hello World',
+				tasks: [
+					{id: 1, description: 'Go the the Store', completed: true},
+					{id: 1, description: 'Finish Screencast', completed: false},
+					{id: 1, description: 'Finish Vue Tutorial', completed: false},
+					{id: 1, description: 'Speed up Checkout', completed: false},
+					{id: 1, description: 'Make Dinner', completed: false},
+					{id: 1, description: 'Clean Room', completed: true},
+				],
+			},
+			methods : {
+				// updateTask(task, this.checked) {
+				// 	console.log(task, this.checked);
+				// }
+
+				checkboxClicked(event) {
+					console.log(event.target.checked)
+				}
+			},
+			computed: {
+				reverseMessage() {
+					return this.message.split('').reverse().join('');
+				},
+
+				incompleteTasks() {
+					return this.tasks.filter(task => !task.completed);
+				},
+
+				completeTasks() {
+					return this.tasks.filter(task => task.completed);
+				}
+
+			},
+			mounted() {
+
+			},
+			
+		})
+	</script>
+</body>
+</html>
