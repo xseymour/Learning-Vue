@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>7-8. Components 101</title>
+	<script type="text/javascript" src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+	<div id="root">
+		<a :href="laracast_url_1">Episode 7</a>
+		<br>
+		<a :href="laracast_url_2">Episode 8</a>
+		<br><br>
+
+		<h2>Components Within Components</h2>
+		<task-list></task-list>
+
+		<h2>Individual Task Components</h2>
+		<ul>
+			<task>Task 1</task>
+			<task>Task 2!</task>
+			<task>Another Task Component</task>
+		</ul>
+		
+	</div>
+
+	<script type='text/javascript' src="main.js"></script>
+</body>
+</html>
