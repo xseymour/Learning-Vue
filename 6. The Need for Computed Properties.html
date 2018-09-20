@@ -15,7 +15,7 @@
 		<h1>All Tasks</h1>
 		<ul>
 			<li v-for="task in tasks">
-				<input type="checkbox" :checked="task.completed" @click="checkboxClicked" data-task_id="task.id">
+				<input type="checkbox" :checked="task.completed" @click="checkboxClicked">
 				{{task.description}}
 			</li>
 		</ul>
