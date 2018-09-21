@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>9. Message Component</title>
+	<title>10. Modal Component</title>
 	<!-- Vue JS Framework linked through unpkg found at : https://vuejs.org/v2/guide/installation.html-->
 	<script type="text/javascript" src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
 	<!-- Bulma Stylesheet linked through CDN at : https://cdnjs.com/libraries/bulma -->
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
 	<style type="text/css">body {padding-top: 40px}</style>
-</head>
 
+</head>
 <body>
 	<div id="root" class="container"> <!-- Class of Container will add whitespace to the left/right of the message modal -->
-		<a :href="laracast_url">Episode 9</a>
+		<a :href="laracast_url">Episode 10</a>
 		<br><br>
 
-		<bulma-message title="Hello World" body="Lorem ipsum dolor sit amet."></bulma-message>
-		<bulma-message title="Hello Universe" body="Bla Bla Bla."></bulma-message>
+		
+		<bulma-modal v-show="showModal" @close="showModal = false">Lorem ipsum dolor sit amet.</bulma-modal>
+		<button @click="showModal = true">Click to show Modal</button>
 	</div>
 
-	<script type="text/javascript" src="message.js"></script>
+	<script type="text/javascript" src="modal.js"></script>
 	<script type="text/javascript" src="main.js"></script>
 
 </body>
