@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>14. Named Slots</title>
+	<!-- Vue JS Framework linked through unpkg found at : https://vuejs.org/v2/guide/installation.html-->
+	<script type="text/javascript" src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+	<!-- Bulma Stylesheet linked through CDN at : https://cdnjs.com/libraries/bulma -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
+	<style type="text/css">body {padding-top: 40px}</style>
+</head>
+<body>
+	<div id="root" class="container">
+		<a :href="laracast_url">Episode 14</a>
+		<br><br>
+
+		<button @click="show_card_modal = true">Show Card Modal</button>
+		<bulma-card-modal v-if="show_card_modal" @close-card-modal="show_card_modal = false">
+			<template slot="header">Header Content!</template>
+			Lorem ipsum dolor sit amet.
+			<template slot="footer">
+				<button class="button is-success">Okay</button>
+			</template>
+		</bulma-card-modal>
+	</div>
+
+	<script type="text/javascript" src="card modal.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+
+</body>
+</html>
