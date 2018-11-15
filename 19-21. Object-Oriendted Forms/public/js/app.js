@@ -1,6 +1,6 @@
 class Errors {
 	constructor() {
-		this.errors = {};
+		this.errors = {};		
 	}
 
 	has(field) {
@@ -24,39 +24,96 @@ class Errors {
 
 	clear(field) {
 		// this.errors[field] = [];
-		delete this.errors[field];
+		if(field) {
+			delete this.errors[field];
+		} else {
+			this.errors = {};
+		}
+
 	}
 }
 
-var app = new Vue({
+class Form {
+
+	constructor(data) {
+		this.originalData = data;
+		this.errors = new Errors();
+		this.is_loading = false;
+		//Assign data fields directly as form fields
+		//Loop through data object parameters
+		for(let field in data) {
+			this[field] = data[field];
+		}
+	} 
+
+	//Retrieve dynamic form data fields
+	data() {
+		//this.name, this.description
+		let data = Object.assign({}, this);
+		delete data.originalData;
+		delete data.errors;
+
+		return data;
+	}
+
+	reset() {
+		for(let field in this.originalData) {
+			this[field] = '';
+		}
+	}
+
+    post(url) {
+        return this.submit('post', url);
+    }
+
+    put(url) {
+        return this.submit('put', url);
+    }
+
+    patch(url) {
+        return this.submit('patch', url);
+    }
+
+    delete(url) {
+        return this.submit('delete', url);
+    }
+
+	submit(request_type, url) {
+		this.is_loading = true;
+		// console.log(this.data());
+		axios[request_type](url, this.data())
+			.then(this.onSuccess.bind(this))
+			.catch(this.onFail.bind(this));
+	}
+
+	onSuccess(response) {
+		// console.log(this);
+		alert(response.data.message);
+		this.errors.clear();
+		this.reset();
+		this.is_loading = false;
+	}
+
+	onFail(error) {
+		// console.log(error.response);
+		// console.log(error.response.data);
+		this.errors.record(error.response.data);
+		this.is_loading = false;
+	}
+
+}
+
+var form_instance = new Vue({
 	el: '#root',
 	data: {
-		name: '',
-		description: '',
-		errors: new Errors(),
+		form: new Form({
+			name: '',
+			description: '',
+		}),
 	},
 	methods : {
 		onSubmit() {
-			axios.post('/projects', this.$data)
-				.then(response => {
-					this.onSuccess(response);
-				})
-				.catch(error => {
-					console.log(error.response);
-					// console.log(error.response.data);
-					this.errors.record(error.response.data);
-				});
-			// axios.post('/projects', {
-			// 	name: this.name,
-			// 	description: this.description
-			// });
-		},
-		onSuccess(response) {
-			alert(response.data.message);
-			
-			// form.reset();
-			this.name = '',
-			this.description = '';
+			this.form.post('/projects');
 		}
 	},
 	computed : {
