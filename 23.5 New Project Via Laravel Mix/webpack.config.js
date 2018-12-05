@@ -1,8 +1,4 @@
 /**
- * THIS FILE WAS ATTAINED FROM node_modules/laravel-mix/setup
- */
-
-/**
  * As our first step, we'll pull in the user's webpack.mix.js
  * file. Based on what the user requests in that file,
  * a generic config object will be constructed for us.
