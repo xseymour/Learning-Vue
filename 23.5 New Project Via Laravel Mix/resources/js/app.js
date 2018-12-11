@@ -11,9 +11,10 @@ window.Vue = new Vue();
 window.axios = axios;
 window._ = _;
 
+
 //Pull in bundled file created by webpack -------------------------------
 // require('../../public/js/one_plus_two.js'); //commonjs
-// import {require_equiv} from '../../public/js/one_plus_two.js'; //es6+
+// import {require_equiv} from '../../public/js/one_plus_two.js'; //es6+. Babel compiles this down to commonjs
 import {OneMessage} from './messages/one_message.js'; //es6+
 // new OneMessage().asAlert();
 //END: Pull in bundled file created by webpack --------------------------

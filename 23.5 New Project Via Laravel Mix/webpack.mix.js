@@ -18,11 +18,11 @@ mix.js('resources/js/app.js', 'public/js')
     .extract(['vue', 'axios', 'lodash', 'popper.js'])
     ;
 
-    if (!mix.inProduction()) {
-		mix.sourceMaps(); // Though it comes with a compile/performance cost, this will provide extra debugging information to your browser's developer tools when using compiled assets.
-	} else {
-    	mix.version();
-	}
+ if (!mix.inProduction()) {
+    mix.sourceMaps(); // Though it comes with a compile/performance cost, this will provide extra debugging information to your browser's developer tools when using compiled assets.
+} else {
+    mix.version();
+}
 
 
 
