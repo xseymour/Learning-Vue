@@ -28,6 +28,29 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app'
+
+//Shared source User. Single source of data being shared between multiple vue instances
+let source = {
+		user: {
+			name: ''
+		}
+	}
+axios.get('/getName').then(response => {
+	source.user.name = response.data.name;
+	console.log(response);
+});
+
+const one = new Vue({
+    el: '#one',
+    data: {
+    	laracast_url: 'https://laracasts.com/series/learn-vue-2-step-by-step/episodes/24',
+    	shared: source
+    }
+});
+
+const two = new Vue({
+    el: '#two',
+    data: {
+    	shared: source
+    }
 });
