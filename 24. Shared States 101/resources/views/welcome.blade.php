@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="utf-8">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>24. Shared State 101</title>
 
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <style type="text/css">body {padding-top: 40px}</style>
+        <style type="text/css">body {padding-top: 40px !important}</style>
     </head>
     <body>
         <div id="one" class="container">
