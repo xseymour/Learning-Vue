@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <a href="https://vue-loader.vuejs.org/" target="_blank">vue-loader.vuejs.org</a>
     <counter></counter>
   </div>
 </template>

@@ -9,7 +9,7 @@
 
 <body>
     <div id="root" class="container">
-        @include ('projects.list')      
+        @include ('projects.list')
 
         <form method="POST" action="/projects" @submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)">
             <div class="control">
