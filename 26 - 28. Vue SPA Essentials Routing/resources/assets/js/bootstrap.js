@@ -5,6 +5,7 @@ import lodash from 'lodash';
 import popper from 'popper.js';
 import jquery from 'jquery';
 import VueRouter from 'vue-router';
+import Form from './utilities/Form';
 
 window.Vue = Vue;
 Vue.use(VueRouter);
@@ -49,6 +50,8 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+window.Form = Form;
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

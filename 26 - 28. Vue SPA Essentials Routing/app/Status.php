@@ -16,4 +16,6 @@ class Status extends Model
             ->select(['id', 'name']) //limit user columns
             ;
     }
+
+    public $fillable = ['body'];
 }

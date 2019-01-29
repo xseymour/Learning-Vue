@@ -19,17 +19,24 @@
 
             </div>
         </div>
+
+        <!--Add to Stream Form-->
+        <add-to-stream @completed="addStatus"></add-to-stream>
+
     </div>
 </template>
 
 <script>
     import Status from '../models/Status';
     import moment from 'moment';
+    import AddToStream from '../components/AddToStream'; //Child Components must be registered with parent
+
     export default {
+        components: { AddToStream },
         data() {
-          return {
-              statuses: []
-          }
+            return {
+                statuses: []
+            }
         },
         filters: {
             ago(date) {
@@ -44,8 +51,16 @@
             Status.all(statuses => this.statuses = statuses);
             // Status.all( ({statuses}) => this.statuses = statuses);
             // Status.all()
-                // .then(response => this.statuses = response.data)
-                // .then(({data}) => this.statuses = data) //es2015 object destructoring
+            // .then(response => this.statuses = response.data)
+            // .then(({data}) => this.statuses = data) //es2015 object destructoring
         },
+        methods: {
+            addStatus(status) {
+                this.statuses.unshift(status);
+                alert('Your status has been added to the stream.');
+
+                window.scrollTo(0,0);
+            },
+        }
     }
 </script>
