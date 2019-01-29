@@ -5,8 +5,13 @@
 
                 <div class="message" v-for="status in statuses">
                     <div class="message-header">
-                        <p>{{status.user.name}} said...</p>
-                        <p>{{postedOn(status)}}</p>
+                        <p>
+                            {{status.user.name}} said...
+                        </p>
+
+                        <p>
+                            {{status.created_at | ago | capitalize}}
+                        </p>
                     </div>
 
                     <div class="message-body" v-text="status.body"></div>
@@ -26,8 +31,14 @@
               statuses: []
           }
         },
-        mounted() {
-            console.log('Component mounted.')
+        filters: {
+            ago(date) {
+                return moment(date).fromNow();
+            },
+            capitalize(value) {
+                return value.toUpperCase();
+            }
+
         },
         created() {
             Status.all(statuses => this.statuses = statuses);
@@ -36,10 +47,5 @@
                 // .then(response => this.statuses = response.data)
                 // .then(({data}) => this.statuses = data) //es2015 object destructoring
         },
-        methods: {
-            postedOn(status) {
-                return moment(status.created_at).fromNow();
-            }
-        }
     }
 </script>
